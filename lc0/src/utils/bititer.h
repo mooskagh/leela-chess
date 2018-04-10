@@ -35,11 +35,11 @@ class BitIterator {
   void operator++() { value_ &= (value_ - 1); }
   T operator*() const {
 #ifdef _MSC_VER
-	  unsigned long result;
-	  _BitScanForward64(&result, value_);
-	  return result;
+    unsigned long result;
+    _BitScanForward64(&result, value_);
+    return result;
 #else
-	  return __builtin_ctzll(value_);
+    return __builtin_ctzll(value_);
 #endif
   }
 

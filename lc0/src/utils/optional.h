@@ -20,19 +20,22 @@ along with Leela Chess.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace {
 
-	// Very poor-man implementation of std::optional. It literally cannot do anything, but it's enough for our use case.
-	template <class T> class optional {
-	public:
-		operator bool() const { return has_value_; }
-		constexpr const T& operator*() const& { return value_;  }
-		optional<T>& operator =(const T& value) { value_ = value; has_value_ = true; return *this; }
-/*		operator const T&() const { return value_; }
-		operator T&() { has_value_ = true; return value_; } 
-		optional<T>& operator =(const T& value) { value_ = value; has_value_ = true; return *this; } */
+// Very poor-man implementation of std::optional. It literally cannot do
+// anything, but it's enough for our use case.
+template <class T>
+class optional {
+ public:
+  operator bool() const { return has_value_; }
+  constexpr const T& operator*() const& { return value_; }
+  optional<T>& operator=(const T& value) {
+    value_ = value;
+    has_value_ = true;
+    return *this;
+  }
 
-	private:
-		T value_;
-		bool has_value_ = false;
-	};
+ private:
+  T value_;
+  bool has_value_ = false;
+};
 
-} // namespace lczero
+}  // namespace
